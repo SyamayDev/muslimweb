@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Description" content="Arah Kiblat Sholat dengan Kompas Digital">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/icons.css">
+    <link rel="stylesheet" href="../assets/css/remixicon.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+
+    <title>Arah Kiblat</title>
+
+    <style>
+        :root {
+            --color-black: #000;
+            --color-white: #fff;
+            --color-primary: #556fff;
+            --color-secondary: #0e132d;
+            --color-snow: #cbcdd8;
+            --color-green: #41bd83;
+            --bg-white: #fff;
+            --bg-snow: #f7f7f8;
+            --border-snow: #efeff6;
+        }
+        body.darkMode-active {
+            --color-secondary: #cbcdd8;
+            --bg-white: #0e132d;
+            --bg-snow: #0a0f27;
+            --border-snow: #242a48;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, var(--bg-snow), var(--bg-white));
+            color: var(--color-secondary);
+            font-family: "CircularStd", sans-serif;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 10px solid var(--border-snow);
+            border-top: 10px solid var(--color-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .card {
+            border-radius: 15px;
+            background: var(--bg-white);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .card-header {
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(45deg, var(--bg-green), var(--bg-blue));
+            color: var(--color-white);
+        }
+        .compass-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 2px solid var(--border-snow);
+            background: var(--bg-white);
+            margin: 20px auto;
+        }
+        .compass-dial {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .compass-dial::before {
+            content: 'N';
+            position: absolute;
+            top: 10px;
+            font-size: 20px;
+            color: var(--color-secondary);
+        }
+        .compass-dial::after {
+            content: 'S';
+            position: absolute;
+            bottom: 10px;
+            font-size: 20px;
+            color: var(--color-secondary);
+        }
+        .compass-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 100px solid var(--color-green);
+            transform-origin: center bottom;
+            transform: translate(-50%, -100%) rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="content">
+            <!-- Header -->
+            <header class="main_haeder multi_item">
+                <div class="em_side_right">
+                    <a class="btn btn__back rounded-circle bg-snow" href="../index.html">
+                        <i class="tio-chevron_left"></i>
+                    </a>
+                </div>
+                <div class="title_page">
+                    <span class="page_name">Arah Kiblat</span>
+                </div>
+                <div class="em_side_right">
+                    <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal" data-target="#mdllSidebarMenu-background">
+                        <i class="ri-menu-fill"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main id="app" class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card my-5 border-0 shadow">
+                            <div class="card-header my-card-header">
+                                <span>Arah Kiblat</span>
+                            </div>
+                            <div class="card-body">
+                                <div v-if="loadingLocation" class="text-center">
+                                    <p>Memuat lokasi Anda...</p>
+                                    <div class="spinner"></div>
+                                </div>
+                                <div v-else-if="error" class="text-center text-danger">
+                                    <p>{{ error }}</p>
+                                </div>
+                                <div v-else>
+                                    <p>Lokasi Anda: {{ userLat.toFixed(4) }}, {{ userLon.toFixed(4) }}</p>
+                                    <p>Arah Kiblat: {{ bearing.toFixed(2) }}° dari utara</p>
+                                    <div class="compass-container">
+                                        <div class="compass-dial"></div>
+                                        <div class="compass-arrow" :style="{ transform: 'translate(-50%, -100%) rotate(' + bearing + 'deg)' }"></div>
+                                    </div>
+                                    <p class="mt-3">Putar perangkat Anda hingga arah utara pada kompas sejajar dengan utara sebenarnya. Panah akan menunjuk ke arah Kiblat.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="em_main_footer with__text just_color p-0">
+                <!-- Salin footer dari kode Doa Digital -->
+                <div class="em_body_navigation -active-links -active_primary position-relative">
+                    <div class="item_link">
+                        <a href="../kalender/" class="btn btn_navLink">
+                            <div class="icon_current">
+                                <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <!-- Konten SVG sama seperti di kode asli -->
+                                </svg>
+                            </div>
+                            <div class="txt__tile">Calender</div>
+                        </a>
+                    </div>
+                    <!-- Sisanya sama seperti footer di kode asli -->
+                </div>
+            </footer>
+
+            <!-- Sidebar -->
+            <div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header d-block">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tio-clear"></i>
+                            </button>
+                            <div class="em_profile_user">
+                                <div class="media">
+                                    <a href="page-profile.html">
+                                        <div class="letter bg-yellow"><span>c</span></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="txt">
+                                            <h3>Syahril May Mubdi</h3>
+                                            <p>+62 822 6740 3010</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav flex-column -active-links">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../index.html">
+                                        <div class="icon_current">
+                                            <!-- Icon Home -->
+                                        </div>
+                                        <span class="title_link">Homepages</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <div class="icon_current">
+                                            <!-- Icon Kiblat -->
+                                        </div>
+                                        <span class="title_link">Kiblat</span>
+                                    </a>
+                                </li>
+                                <!-- Sisanya sama seperti sidebar asli -->
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="em_darkMode_menu">
+                                <label class="text" for="switchDarkMode">
+                                    <h3>Dark Mode</h3>
+                                    <p>Browsing in night mode</p>
+                                </label>
+                                <label class="switch_toggle toggle_lg" for="switchDarkMode">
+                                    <input type="checkbox" class="switchDarkMode" id="switchDarkMode">
+                                    <span class="handle"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                loadingLocation: true,
+                error: '',
+                userLat: null,
+                userLon: null,
+                bearing: 0
+            },
+            methods: {
+                getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(position => {
+                            this.userLat = position.coords.latitude;
+                            this.userLon = position.coords.longitude;
+                            this.calculateQibla();
+                            this.loadingLocation = false;
+                        }, error => {
+                            this.error = 'Gagal mendapatkan lokasi. Pastikan Anda mengizinkan akses lokasi.';
+                            this.loadingLocation = false;
+                        });
+                    } else {
+                        this.error = 'Geolocation tidak didukung oleh browser Anda.';
+                        this.loadingLocation = false;
+                    }
+                },
+                calculateQibla() {
+                    const kaabaLat = 21.4225;
+                    const kaabaLon = 39.8262;
+                    this.bearing = this.calculateBearing(this.userLat, this.userLon, kaabaLat, kaabaLon);
+                },
+                calculateBearing(lat1, lon1, lat2, lon2) {
+                    const toRadians = deg => deg * (Math.PI / 180);
+                    const toDegrees = rad => rad * (180 / Math.PI);
+                    lat1 = toRadians(lat1);
+                    lon1 = toRadians(lon1);
+                    lat2 = toRadians(lat2);
+                    lon2 = toRadians(lon2);
+                    const dLon = lon2 - lon1;
+                    const y = Math.sin(dLon) * Math.cos(lat2);
+                    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+                    let bearing = toDegrees(Math.atan2(y, x));
+                    bearing = (bearing + 360) % 360; // Normalisasi ke 0-360 derajat
+                    return bearing;
+                }
+            },
+            mounted() {
+                this.getLocation();
+            }
+        });
+
+        // Dark Mode Persistence
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeSwitch = document.getElementById('switchDarkMode');
+            const body = document.body;
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('darkMode-active');
+                if (darkModeSwitch) darkModeSwitch.checked = true;
+            }
+            if (darkModeSwitch) {
+                darkModeSwitch.addEventListener('change', () => {
+                    if (darkModeSwitch.checked) {
+                        body.classList.add('darkMode-active');
+                        localStorage.setItem('darkMode', 'enabled');
+                    } else {
+                        body.classList.remove('darkMode-active');
+                        localStorage.setItem('darkMode', 'disabled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

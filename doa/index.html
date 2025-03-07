@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lateef&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+    <link rel="icon" type="image/png" href="../myassets/img/favicon2 (2).png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../myassets/img/favicon2 (2).png">
+
     <!-- Muslim Web CSS -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/icons.css">
@@ -20,7 +23,327 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/normalize.css">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Variables from Muslim Web */
+:root {
+    --color-black: #000;
+    --color-white: #fff;
+    --color-primary: #556fff;
+    --color-secondary: #0e132d;
+    --color-snow: #cbcdd8;
+    --color-red: #ff4040;
+    --color-orange: #ff702c;
+    --color-blue: #4a8cfd;
+    --color-yellow: #fa9905;
+    --color-green: #41bd83;
+    --color-text: #9498ac;
+    --color-comment: #5d6072;
+    --bg-black: #000;
+    --bg-white: #fff;
+    --bg-primary: #556fff;
+    --bg-secondary: #0e132d;
+    --bg-snow: #f7f7f8;
+    --bg-red: #ff4040;
+    --bg-orange: #ff702c;
+    --bg-blue: #53a7f9;
+    --bg-yellow: #fa9905;
+    --bg-green: #41bd83;
+    --border-black: #000;
+    --border-white: #fff;
+    --border-primary: #556fff;
+    --border-secondary: #0e132d;
+    --border-snow: #efeff6;
+    --border-red: #ff4040;
+    --border-orange: #ff702c;
+    --border-blue: #4a8cfd;
+    --border-yellow: #fa9905;
+    --border-green: #41bd83;
+    --border-input: #efeff6;
+}
+
+body.darkMode-active {
+    --color-black: #fff;
+    --color-white: #fff;
+    --color-primary: #556fff;
+    --color-secondary: #cbcdd8;
+    --color-snow: #52566e;
+    --color-red: #ff4040;
+    --color-orange: #ff702c;
+    --color-blue: #4a8cfd;
+    --color-yellow: #fa9905;
+    --color-green: #41bd83;
+    --color-text: #9498ac;
+    --color-comment: #5d6072;
+    --bg-black: #fff;
+    --bg-white: #0e132d;
+    --bg-primary: #556fff;
+    --bg-secondary: #9498ac;
+    --bg-snow: #0a0f27;
+    --bg-red: #ff4040;
+    --bg-orange: #ff702c;
+    --bg-blue: #53a7f9;
+    --bg-yellow: #fa9905;
+    --bg-green: #41bd83;
+    --border-black: #000;
+    --border-white: #0e132d;
+    --border-primary: #556fff;
+    --border-secondary: #0e132d;
+    --border-snow: #242a48;
+    --border-red: #ff4040;
+    --border-orange: #ff702c;
+    --border-blue: #4a8cfd;
+    --border-yellow: #fa9905;
+    --border-green: #41bd83;
+    --border-input: #303756;
+}
+
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, var(--bg-snow), var(--bg-white));
+    color: var(--color-secondary);
+    font-family: "CircularStd", sans-serif;
+    transition: background 0.5s ease, color 0.3s ease;
+    animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+    0% { background: linear-gradient(45deg, var(--bg-snow), var(--bg-white)); }
+    25% { background: linear-gradient(45deg, var(--bg-white), var(--bg-snow)); }
+    50% { background: linear-gradient(45deg, var(--bg-snow), var(--bg-white)); }
+    75% { background: linear-gradient(45deg, var(--bg-white), var(--bg-snow)); }
+    100% { background: linear-gradient(45deg, var(--bg-snow), var(--bg-white)); }
+}
+
+/* Spinner */
+.spinner {
+    width: 80px;
+    height: 80px;
+    border: 10px solid var(--border-snow);
+    border-top: 10px solid var(--color-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite, pulseSpinner 1.5s ease infinite;
+    margin: 20px auto;
+    display: block;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes pulseSpinner {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Card & Modal */
+.card, .modal-content {
+    border-radius: 15px;
+    background: var(--bg-white);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.card:hover, .modal-content:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+.card-header, .modal-header {
+    border-radius: 15px 15px 0 0;
+    background: linear-gradient(45deg, var(--bg-green), var(--bg-blue));
+    color: var(--color-white);
+}
+
+/* Doa List */
+.doa-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.doa-card {
+    background: linear-gradient(135deg, var(--bg-snow), var(--bg-white));
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.doa-card:hover {
+    background: linear-gradient(135deg, var(--bg-white), var(--bg-snow));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.doa-card .arabic-name {
+    font-family: 'Lateef', serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.8rem;
+    color: var(--color-green);
+    transition: color 0.3s ease;
+}
+.doa-card:hover .arabic-name {
+    color: var(--color-blue);
+}
+.doa-card .title { font-size: 1.1rem; color: var(--color-secondary); }
+.doa-card .source { font-size: 0.95rem; color: var(--color-text); }
+
+/* Search Container */
+.search-container {
+    position: relative;
+    margin-bottom: 25px;
+    animation: searchFadeIn 1s ease;
+}
+@keyframes searchFadeIn {
+    0% { opacity: 0; transform: translateX(-20px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+#doaSearch {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 2px solid var(--border-green);
+    border-radius: 25px;
+    font-size: 1rem;
+    background: var(--bg-white);
+    color: var(--color-secondary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+#doaSearch:focus {
+    border-color: var(--border-blue);
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+    transform: scale(1.02);
+    outline: none;
+}
+.voice-search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-green);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.voice-search-btn:hover {
+    background: var(--bg-blue);
+    transform: translateY(-50%) rotate(360deg);
+}
+
+/* Voice Popup */
+.voice-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    text-align: center;
+    pointer-events: none;
+}
+.voice-popup p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--color-green);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    align-items: center;
+}
+.pagination button {
+    padding: 10px 15px;
+    border: 2px solid var(--border-green);
+    border-radius: 25px;
+    background: var(--bg-white);
+    color: var(--color-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.pagination button:hover {
+    background: var(--bg-green);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+.pagination button:disabled {
+    background: var(--bg-snow);
+    border-color: var(--border-snow);
+    color: var(--color-text);
+    cursor: not-allowed;
+    transform: none;
+}
+.pagination .page-number {
+    padding: 8px 16px;
+    border: 2px solid var(--border-green);
+    border-radius: 25px;
+    background: var(--bg-white);
+    color: var(--color-green);
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.pagination .page-number:hover {
+    background: var(--bg-green);
+    color: var(--color-white);
+}
+
+/* Share Options */
+.share-options {
+    margin-top: 10px;
+    display: none;
+}
+.share-options p {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--color-green);
+}
+.share-options a {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 8px 12px;
+    background: var(--bg-blue);
+    color: var(--color-white);
+    border-radius: 6px;
+    display: inline-block;
+}
+.share-options a:hover {
+    background: var(--bg-primary);
+}
+
+
+/* Latin Text */
+.latin-text {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .doa-list { grid-template-columns: repeat(1, 1fr); gap: 15px; }
+    .doa-card .arabic-name { font-size: 1.5rem; }
+    .voice-popup { width: 90%; }
+}
+
+/* Modal Backdrop Fix */
+.modal-backdrop { display: none !important; }
+
+
+.em_main_footer.with__text.just_color.p-0 {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+    </style>
 
     <title>Doa Digital</title>
 </head>
@@ -236,7 +559,10 @@
         <div class="item_link">
             <a href="../jadwalsholatdanimsakiah/" class="btn btn_navLink">
                 <div class="">
-                    <i class="fas fa-clock"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M9.5 9.5L12.9999 12.9996M16 8L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                 </div>
                 <div class="txt__tile">Sholat</div>
             </a>
@@ -283,46 +609,22 @@
             </a>
         </div>
         <div class="item_link">
-            <a href="../setting/" class="btn btn_navLink">
+            <a href="setting/index.html" class="btn btn_navLink">
                 <div class="icon_current">
-                    <svg id="Iconly_Two-tone_Setting" data-name="Iconly/Two-tone/Setting"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g id="Setting" transform="translate(2.5 1.5)">
-                            <path id="Path_33946"
-                                d="M17.528,5.346l-.622-1.08a1.913,1.913,0,0,0-2.609-.7h0a1.9,1.9,0,0,1-2.609-.677,1.831,1.831,0,0,1-.256-.915h0A1.913,1.913,0,0,0,9.519,0H8.265a1.9,1.9,0,0,0-1.9,1.913h0A1.913,1.913,0,0,1,4.448,3.8a1.831,1.831,0,0,1-.915-.256h0a1.913,1.913,0,0,0-2.609.7l-.668,1.1a1.913,1.913,0,0,0,.7,2.609h0a1.913,1.913,0,0,1,.957,1.657,1.913,1.913,0,0,1-.957,1.657h0a1.9,1.9,0,0,0-.7,2.6h0l.632,1.089A1.913,1.913,0,0,0,3.5,15.7h0a1.895,1.895,0,0,1,2.6.7,1.831,1.831,0,0,1,.256.915h0a1.913,1.913,0,0,0,1.913,1.913H9.519a1.913,1.913,0,0,0,1.913-1.9h0a1.9,1.9,0,0,1,1.913-1.913,1.95,1.95,0,0,1,.915.256h0a1.913,1.913,0,0,0,2.609-.7h0l.659-1.1a1.9,1.9,0,0,0-.7-2.609h0a1.9,1.9,0,0,1-.7-2.609,1.876,1.876,0,0,1,.7-.7h0a1.913,1.913,0,0,0,.7-2.6h0Z"
-                                transform="translate(0.779 0.778)" fill="none" stroke="#200e32"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                stroke-width="1.5" />
-                            <circle id="Ellipse_737" cx="2.636" cy="2.636" r="2.636"
-                                transform="translate(7.039 7.753)" fill="none" stroke="#200e32"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                stroke-width="1.5" opacity="0.4" />
-                        </g>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                        <path d="M21.3175 7.14139L20.8239 6.28479C20.4506 5.63696 20.264 5.31305 19.9464 5.18388C19.6288 5.05472 19.2696 5.15664 18.5513 5.36048L17.3311 5.70418C16.8725 5.80994 16.3913 5.74994 15.9726 5.53479L15.6357 5.34042C15.2766 5.11043 15.0004 4.77133 14.8475 4.37274L14.5136 3.37536C14.294 2.71534 14.1842 2.38533 13.9228 2.19657C13.6615 2.00781 13.3143 2.00781 12.6199 2.00781H11.5051C10.8108 2.00781 10.4636 2.00781 10.2022 2.19657C9.94085 2.38533 9.83106 2.71534 9.61149 3.37536L9.27753 4.37274C9.12465 4.77133 8.84845 5.11043 8.48937 5.34042L8.15249 5.53479C7.73374 5.74994 7.25259 5.80994 6.79398 5.70418L5.57375 5.36048C4.85541 5.15664 4.49625 5.05472 4.17867 5.18388C3.86109 5.31305 3.67445 5.63696 3.30115 6.28479L2.80757 7.14139C2.45766 7.74864 2.2827 8.05227 2.31666 8.37549C2.35061 8.69871 2.58483 8.95918 3.05326 9.48012L4.0843 10.6328C4.3363 10.9518 4.51521 11.5078 4.51521 12.0077C4.51521 12.5078 4.33636 13.0636 4.08433 13.3827L3.05326 14.5354C2.58483 15.0564 2.35062 15.3168 2.31666 15.6401C2.2827 15.9633 2.45766 16.2669 2.80757 16.8741L3.30114 17.7307C3.67443 18.3785 3.86109 18.7025 4.17867 18.8316C4.49625 18.9608 4.85542 18.8589 5.57377 18.655L6.79394 18.3113C7.25263 18.2055 7.73387 18.2656 8.15267 18.4808L8.4895 18.6752C8.84851 18.9052 9.12464 19.2442 9.2775 19.6428L9.61149 20.6403C9.83106 21.3003 9.94085 21.6303 10.2022 21.8191C10.4636 22.0078 10.8108 22.0078 11.5051 22.0078H12.6199C13.3143 22.0078 13.6615 22.0078 13.9228 21.8191C14.1842 21.6303 14.294 21.3003 14.5136 20.6403L14.8476 19.6428C15.0004 19.2442 15.2765 18.9052 15.6356 18.6752L15.9724 18.4808C16.3912 18.2656 16.8724 18.2055 17.3311 18.3113L18.5513 18.655C19.2696 18.8589 19.6288 18.9608 19.9464 18.8316C20.264 18.7025 20.4506 18.3785 20.8239 17.7307L21.3175 16.8741C21.6674 16.2669 21.8423 15.9633 21.8084 15.6401C21.7744 15.3168 21.5402 15.0564 21.0718 14.5354L20.0407 13.3827C19.7887 13.0636 19.6098 12.5078 19.6098 12.0077C19.6098 11.5078 19.7888 10.9518 20.0407 10.6328L21.0718 9.48012C21.5402 8.95918 21.7744 8.69871 21.8084 8.37549C21.8423 8.05227 21.6674 7.74864 21.3175 7.14139Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M15.5195 12C15.5195 13.933 13.9525 15.5 12.0195 15.5C10.0865 15.5 8.51953 13.933 8.51953 12C8.51953 10.067 10.0865 8.5 12.0195 8.5C13.9525 8.5 15.5195 10.067 15.5195 12Z" stroke="currentColor" stroke-width="1.5" />
                     </svg>
                 </div>
-                <div class="icon_active">
-                    <svg id="Iconly_Bulk_Setting" data-name="Iconly/Bulk/Setting"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g id="Setting" transform="translate(2.5 2)">
-                            <path id="Path"
-                                d="M2.9,5.65A2.853,2.853,0,0,1,0,2.83,2.861,2.861,0,0,1,2.9,0a2.825,2.825,0,1,1,0,5.65"
-                                transform="translate(6.61 7.18)" fill="#200e32" />
-                            <path id="Path-2" data-name="Path"
-                                d="M18.73,12.37a2.3,2.3,0,0,0-.828-.79,1.547,1.547,0,0,1-.634-.64,1.822,1.822,0,0,1,.654-2.5,2.027,2.027,0,0,0,.756-2.83l-.685-1.18a2.112,2.112,0,0,0-2.872-.76,1.973,1.973,0,0,1-2.575-.69,1.546,1.546,0,0,1-.235-.88,1.778,1.778,0,0,0-.276-1.06A2.152,2.152,0,0,0,10.217,0H8.776A2.195,2.195,0,0,0,6.967,1.04,1.785,1.785,0,0,0,6.681,2.1a1.546,1.546,0,0,1-.235.88,1.963,1.963,0,0,1-2.565.69A2.124,2.124,0,0,0,1,4.43L.314,5.61a2.044,2.044,0,0,0,.756,2.83,1.834,1.834,0,0,1,.664,2.5,1.634,1.634,0,0,1-.644.64,2.118,2.118,0,0,0-.818.79,2,2,0,0,0,.02,2.05L1,15.62a2.134,2.134,0,0,0,1.819,1.04,2.161,2.161,0,0,0,1.083-.3,1.586,1.586,0,0,1,.9-.23,1.892,1.892,0,0,1,1.88,1.82A2.07,2.07,0,0,0,8.807,20H10.2a2.068,2.068,0,0,0,2.115-2.05A1.908,1.908,0,0,1,14.2,16.13a1.63,1.63,0,0,1,.9.23,2.1,2.1,0,0,0,2.892-.74l.715-1.2a2.018,2.018,0,0,0,.02-2.05"
-                                fill="#200e32" opacity="0.4" />
-                        </g>
-                    </svg>
-  
-                </div>
-                <div class="txt__tile">Settings</div>
+                <div class="txt__tile">Setting</div>
             </a>
         </div>
     </div>
   </footer>
   <!-- End. em_main_footer -->
 
-        <!-- Modal Sidebar Menu dari Hadist Digital -->
-        <div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Sidebar Menu dari Hadist Digital -->
+<div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header d-block">
@@ -349,22 +651,7 @@
                         <ul class="nav flex-column -active-links">
                             <li class="nav-item">
                                 <a class="nav-link" href="../index.html">
-                                    <div class="">
-                                        <div class="icon_current">
-                                            <svg id="Iconly_Curved_Discovery" data-name="Iconly/Curved/Discovery" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                                <g id="Discovery" transform="translate(2.292 2.292)">
-                                                    <path id="Stroke_1" data-name="Stroke 1" d="M0,7.708c0,5.781,1.927,7.708,7.708,7.708s7.708-1.927,7.708-7.708S13.489,0,7.708,0,0,1.927,0,7.708Z" transform="translate(0 0)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                                    <path id="Stroke_3" data-name="Stroke 3" d="M0,5.5,1.312,1.312,5.5,0,4.192,4.191Z" transform="translate(4.957 4.957)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <span class="title_link">Kiblat</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-homes.html">
-                                    <div class="">
+                                <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Home" data-name="Iconly/Curved/Home" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                 <g id="Home" transform="translate(2 1.667)">
@@ -378,24 +665,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="app-components.html">
-                                    <div class="">
-                                        <div class="icon_current">
-                                            <svg id="Iconly_Curved_More_Circle" data-name="Iconly/Curved/More Circle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                                <g id="More_Circle" data-name="More Circle" transform="translate(2.292 2.292)">
-                                                    <path id="Stroke_4" data-name="Stroke 4" d="M0,7.708C0,1.927,1.927,0,7.708,0s7.708,1.927,7.708,7.708-1.927,7.708-7.708,7.708S0,13.489,0,7.708Z" transform="translate(0 0)" fill="none" stroke="#556fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                                    <path id="Stroke_11" data-name="Stroke 11" d="M.5.5H.5" transform="translate(9.883 8.792)" fill="none" stroke="#556fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
-                                                    <path id="Stroke_13" data-name="Stroke 13" d="M.5.5H.5" transform="translate(7.383 5.458)" fill="none" stroke="#556fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
-                                                    <path id="Stroke_15" data-name="Stroke 15" d="M.5.5H.5" transform="translate(4.876 8.792)" fill="none" stroke="#556fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" />
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <span class="title_link">Components</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="app-pages.html">
+                                <a class="nav-link" href="https://kitaberbagi.com/forum/">
                                     <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -407,13 +677,44 @@
                                                 </g>
                                             </svg>
                                         </div>
-                                        <span class="title_link">Pages</span>
+                                        <span class="title_link">Community</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../quran/">
+                                    <div class="">
+                                        <div class="icon_current">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                                                <path d="M21 17H6.5C5.11929 17 4 18.1193 4 19.5C4 20.8807 5.11929 22 6.5 22H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M21 22C19.6193 22 18.5 20.8807 18.5 19.5C18.5 18.1193 19.6193 17 21 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M15.4337 10.9999C14.8684 11.9381 13.8397 12.5656 12.6645 12.5656C10.8802 12.5656 9.43375 11.1192 9.43375 9.33487C9.43375 8.15965 10.0612 7.13098 10.9995 6.56564" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M14 8H14.009" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M4 19.5V5.5C4 3.567 5.567 2 7.5 2H17.5C19.433 2 21 3.567 21 5.5V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                        <span class="title_link">Al - Quran</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <div class="">
+                                        <div class="icon_current">
+                                            <svg id="Iconly_Curved_Discovery" data-name="Iconly/Curved/Discovery" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <g id="Discovery" transform="translate(2.292 2.292)">
+                                                    <path id="Stroke_1" data-name="Stroke 1" d="M0,7.708c0,5.781,1.927,7.708,7.708,7.708s7.708-1.927,7.708-7.708S13.489,0,7.708,0,0,1.927,0,7.708Z" transform="translate(0 0)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                                    <path id="Stroke_3" data-name="Stroke 3" d="M0,5.5,1.312,1.312,5.5,0,4.192,4.191Z" transform="translate(4.957 4.957)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <span class="title_link">Kiblat</span>
                                     </div>
                                 </a>
                             </li>
                             <label class="title__label">other</label>
                             <li class="nav-item">
-                                <a class="nav-link" href="page-profile.html">
+                                <a class="nav-link" href="../setting/">
                                     <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Setting" data-name="Iconly/Curved/Setting" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -431,7 +732,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="page-support.html">
+                                <a class="nav-link" href="https://easydigital.co.id/">
                                     <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Message" data-name="Iconly/Curved/Message" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -447,7 +748,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="page-about.html">
-                                    <div class="">
+                                    <div class="#">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Info_Square" data-name="Iconly/Curved/Info Square" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                 <g id="Info_Square" data-name="Info Square" transform="translate(2.292 2.292)">
@@ -479,6 +780,7 @@
             </div>
         </div>
     </div>
+<!-- End Sidebar -->
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -487,6 +789,280 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="script.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                allDoas: [],
+                detail: { id: null, judul: 'Data Tidak Ditemukan', arab: '', latin: '(Latin tidak tersedia)', indo: '', source: 'Sumber Tidak Tersedia' },
+                loading: false,
+                loading2: false,
+                copied: false,
+                savedDoas: [],
+                searchQuery: '',
+                currentPage: 1,
+                itemsPerPage: 12,
+                showVoicePopup: false,
+                voiceText: '',
+                showShareOptions: false,
+                shareText: ''
+            },
+            computed: {
+                filteredDoas() {
+                    let filtered = this.allDoas;
+                    if (this.searchQuery) {
+                        const query = this.searchQuery.toLowerCase().replace(/[\s-]/g, '');
+                        filtered = filtered.filter(d => {
+                            const judulNormalized = d.judul.toLowerCase().replace(/[\s-]/g, '');
+                            const arabNormalized = d.arab.toLowerCase().replace(/[\s-]/g, '');
+                            const indoNormalized = d.indo.toLowerCase().replace(/[\s-]/g, '');
+                            const sourceNormalized = d.source.toLowerCase().replace(/[\s-]/g, '');
+                            return (
+                                judulNormalized.includes(query) ||
+                                arabNormalized.includes(query) ||
+                                indoNormalized.includes(query) ||
+                                sourceNormalized.includes(query)
+                            );
+                        });
+                        if (query === 'hadist') filtered = filtered.filter(d => d.source.toLowerCase() === 'hadist');
+                        else if (query === 'quran') filtered = filtered.filter(d => d.source.toLowerCase() === 'quran');
+                        else if (query === 'lainnya') filtered = filtered.filter(d => d.source.toLowerCase() === 'lainnya');
+                    }
+                    return filtered;
+                },
+                totalPages() { return Math.ceil(this.filteredDoas.length / this.itemsPerPage); },
+                paginatedDoas() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    const end = start + this.itemsPerPage;
+                    return this.filteredDoas.slice(start, end);
+                },
+                currentIndex() { return this.filteredDoas.findIndex(d => d.id === this.detail.id); },
+                hasPrev() { return this.currentIndex > 0; },
+                hasNext() { return this.currentIndex >= 0 && this.currentIndex < this.filteredDoas.length - 1; }
+            },
+            methods: {
+                refreshPage() { window.location.reload(); },
+                arabicToLatin(arabicText) {
+                    const arabicToLatinMap = {
+                        'ا': 'a', 'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j', 'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'dh', 'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh', 'ص': 's',
+                        'ض': 'd', 'ط': 't', 'ظ': 'z', 'ع': "'a", 'غ': 'gh', 'ف': 'f', 'ق': 'q', 'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n', 'ه': 'h', 'و': 'w', 'ي': 'y',
+                        'ء': "'", 'آ': 'aa', 'إ': 'i', 'أ': 'a', 'ؤ': 'u', 'ئ': 'i', 'َ': 'a', 'ِ': 'i', 'ُ': 'u', 'ً': 'an', 'ٍ': 'in', 'ٌ': 'un', 'ْ': '', 'ّ': ''
+                    };
+                    let latin = '';
+                    for (let char of arabicText) latin += arabicToLatinMap[char] || char;
+                    latin = latin.replace(/[\u064B-\u065F]/g, '').trim();
+                    return latin.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                },
+                fetchAllDoas() {
+                    this.loading = true;
+                    const promises = [];
+                    for (let i = 1; i <= 108; i++) {
+                        promises.push(
+                            fetch(`https://api.myquran.com/v2/doa/${i}`)
+                                .then(response => response.json())
+                                .then(res => {
+                                    if (res && res.status === true && res.data && res.data.arab && res.data.indo) {
+                                        return {
+                                            id: i,
+                                            judul: res.data.judul || `Doa ${i}`,
+                                            arab: res.data.arab,
+                                            latin: this.arabicToLatin(res.data.arab),
+                                            indo: res.data.indo,
+                                            source: res.data.source || 'Sumber Tidak Tersedia'
+                                        };
+                                    }
+                                    return null;
+                                })
+                                .catch(err => { console.error(`Error fetching doa ${i}:`, err); return null; })
+                        );
+                    }
+                    Promise.all(promises).then(results => {
+                        this.allDoas = results.filter(doa => doa !== null);
+                        this.loading = false;
+                    }).catch(err => {
+                        console.error('Error fetching all doas:', err);
+                        this.loading = false;
+                        alert('Gagal memuat daftar doa. Silakan coba lagi.');
+                    });
+                },
+                getDetail(doaId) {
+                    this.loading2 = true;
+                    this.detail = { id: doaId, judul: 'Memuat...', arab: '', latin: '(Latin tidak tersedia)', indo: '', source: 'Sumber Tidak Tersedia' };
+                    fetch(`https://api.myquran.com/v2/doa/${doaId}`)
+                        .then(response => response.json())
+                        .then(res => {
+                            if (res && res.status === true && res.data && res.data.arab && res.data.indo) {
+                                this.detail = {
+                                    id: doaId,
+                                    judul: res.data.judul || 'Judul Tidak Tersedia',
+                                    arab: res.data.arab,
+                                    latin: this.arabicToLatin(res.data.arab),
+                                    indo: res.data.indo,
+                                    source: res.data.source || 'Sumber Tidak Tersedia'
+                                };
+                            } else {
+                                this.detail = { id: doaId, judul: 'Data Tidak Ditemukan', arab: '', latin: '(Latin tidak tersedia)', indo: '', source: 'Sumber Tidak Tersedia' };
+                            }
+                            this.loading2 = false;
+                        })
+                        .catch(err => {
+                            console.error('Error fetching doa detail:', err);
+                            this.detail = { id: doaId, judul: 'Gagal Memuat Data', arab: '', latin: '(Latin tidak tersedia)', indo: '', source: 'Sumber Tidak Tersedia' };
+                            this.loading2 = false;
+                            alert('Gagal memuat detail doa. Silakan coba lagi.');
+                        });
+                },
+                openDetailModal(doaId) {
+                    const validDoa = this.allDoas.find(doa => doa.id === doaId);
+                    if (validDoa) {
+                        this.getDetail(doaId);
+                        const checkLoading = setInterval(() => {
+                            if (!this.loading2) {
+                                clearInterval(checkLoading);
+                                $('#detailModal').modal('show');
+                            }
+                        }, 100);
+                    } else {
+                        alert('ID Doa tidak valid atau data tidak tersedia.');
+                    }
+                },
+                copyDoa() {
+                    if (this.detail.arab) {
+                        let text = `${this.detail.judul}\nArab: ${this.detail.arab}\nLatin: ${this.detail.latin}\nTerjemahan: ${this.detail.indo}`;
+                        navigator.clipboard.writeText(text).then(() => {
+                            this.copied = true;
+                            setTimeout(() => this.copied = false, 1000);
+                        });
+                    } else {
+                        alert('Tidak ada data yang dapat disalin.');
+                    }
+                },
+                shareDoa() {
+                    if (this.detail.arab) {
+                        this.shareText = `${this.detail.judul}\n\nArab: ${this.detail.arab}\n\nLatin: ${this.detail.latin}\n\nTerjemahan: ${this.detail.indo}\n\n(Dibagikan dari Doa Digital)`;
+                        if (navigator.share) {
+                            navigator.share({
+                                title: this.detail.judul,
+                                text: this.shareText
+                            }).then(() => console.log('Doa berhasil dibagikan')).catch(error => console.error('Error sharing:', error));
+                        } else {
+                            this.showShareOptions = true;
+                        }
+                    } else {
+                        alert('Tidak ada data yang dapat dibagikan.');
+                    }
+                },
+                copyShareText() {
+                    navigator.clipboard.writeText(this.shareText).then(() => alert('Teks doa telah disalin ke clipboard.')).catch(err => console.error('Gagal menyalin teks:', err));
+                },
+                toggleSaveDoa(doa) {
+                    if (doa.arab) {
+                        const key = doa.id;
+                        const index = this.savedDoas.findIndex(d => d.id === key);
+                        if (index >= 0) this.savedDoas.splice(index, 1);
+                        else this.savedDoas.push({ id: doa.id, judul: doa.judul, arab: doa.arab, latin: doa.latin, indo: doa.indo, source: doa.source });
+                        this.saveDoas();
+                    } else {
+                        alert('Data doa tidak valid untuk disimpan.');
+                    }
+                },
+                isDoaSaved(doa) { return this.savedDoas.some(d => d.id === doa.id); },
+                showSavedDoasModal() { $('#savedDoasModal').modal('show'); },
+                goToSavedDoa(doa) { $('#savedDoasModal').modal('hide'); this.openDetailModal(doa.id); },
+                filterDoas() { this.currentPage = 1; },
+                previousPage() { if (this.currentPage > 1) this.currentPage--; },
+                nextPage() { if (this.currentPage < this.totalPages) this.currentPage++; },
+                prevDoa() { if (this.hasPrev) this.openDetailModal(this.filteredDoas[this.currentIndex - 1].id); },
+                nextDoa() { if (this.hasNext) this.openDetailModal(this.filteredDoas[this.currentIndex + 1].id); },
+                startVoiceSearch() {
+                    if (!('webkitSpeechRecognition' in window)) {
+                        alert('Browser Anda tidak mendukung fitur pencarian suara.');
+                        return;
+                    }
+                    const recognition = new webkitSpeechRecognition();
+                    recognition.lang = 'id-ID';
+                    recognition.continuous = false;
+                    recognition.interimResults = true;
+                    this.showVoicePopup = true;
+                    this.voiceText = 'Mendengarkan...';
+                    document.body.classList.remove('modal-open');
+                    if (document.querySelector('.modal-backdrop')) document.querySelector('.modal-backdrop').remove();
+                    recognition.onresult = (event) => {
+                        const interimTranscript = Array.from(event.results).map(result => result[0].transcript).join('');
+                        this.voiceText = interimTranscript || 'Mendengarkan...';
+                        if (event.results[0].isFinal) {
+                            this.searchQuery = event.results[0][0].transcript;
+                            this.filterDoas();
+                            setTimeout(() => {
+                                this.showVoicePopup = false;
+                                document.body.classList.remove('modal-open');
+                                if (document.querySelector('.modal-backdrop')) document.querySelector('.modal-backdrop').remove();
+                            }, 1000);
+                        }
+                    };
+                    recognition.onend = () => {
+                        if (this.voiceText === 'Mendengarkan...') {
+                            this.voiceText = 'Tidak ada suara terdeteksi';
+                            setTimeout(() => {
+                                this.showVoicePopup = false;
+                                document.body.classList.remove('modal-open');
+                                if (document.querySelector('.modal-backdrop')) document.querySelector('.modal-backdrop').remove();
+                            }, 1000);
+                        }
+                    };
+                    recognition.onerror = (event) => {
+                        this.voiceText = 'Error: ' + event.error;
+                        setTimeout(() => {
+                            this.showVoicePopup = false;
+                            document.body.classList.remove('modal-open');
+                            if (document.querySelector('.modal-backdrop')) document.querySelector('.modal-backdrop').remove();
+                        }, 1000);
+                        console.error('Voice recognition error:', event.error);
+                    };
+                    recognition.start();
+                },
+                loadSavedDoas() {
+                    const saved = localStorage.getItem('savedDoas');
+                    if (saved) this.savedDoas = JSON.parse(saved) || [];
+                },
+                saveDoas() { localStorage.setItem('savedDoas', JSON.stringify(this.savedDoas)); }
+            },
+            mounted() {
+                this.loadSavedDoas();
+                this.fetchAllDoas();
+                $('#detailModal').on('hidden.bs.modal', () => {
+                    this.detail = { id: null, judul: 'Data Tidak Ditemukan', arab: '', latin: '(Latin tidak tersedia)', indo: '', source: 'Sumber Tidak Tersedia' };
+                    this.loading2 = false;
+                    this.showShareOptions = false;
+                });
+            }
+        });
+        
+        // Dark Mode Persistence
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeSwitch = document.getElementById('switchDarkMode');
+            const body = document.body;
+        
+            // Load dark mode state from localStorage
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('darkMode-active');
+                if (darkModeSwitch) darkModeSwitch.checked = true;
+            }
+        
+            // Toggle dark mode
+            if (darkModeSwitch) {
+                darkModeSwitch.addEventListener('change', () => {
+                    if (darkModeSwitch.checked) {
+                        body.classList.add('darkMode-active');
+                        localStorage.setItem('darkMode', 'enabled');
+                    } else {
+                        body.classList.remove('darkMode-active');
+                        localStorage.setItem('darkMode', 'disabled');
+                    }
+                });
+            }
+        });
+        
+    </script>
 </body>
 </html>

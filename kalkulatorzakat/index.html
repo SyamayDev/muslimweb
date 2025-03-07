@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="theme-color" content="#ffffff">
-    <title>Kalender Masehi & Hijriyah</title>
-    <meta name="description" content="Kalender Masehi dan Hijriyah terintegrasi dengan tema Al-Qur'an Digital">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Description" content="Kalkulator Zakat Online untuk Menghitung Zakat Penghasilan">
 
-    <!-- Favicon -->
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lateef&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <link rel="icon" type="image/png" href="../myassets/img/favicon2 (2).png" sizes="32x32">
     <link rel="apple-touch-icon" href="../myassets/img/favicon2 (2).png">
 
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css">
+    <!-- Muslim Web CSS -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/icons.css">
     <link rel="stylesheet" href="../assets/css/remixicon.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/normalize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../myassets/css/kalkulatorzakat.css">
 
-    <link rel="stylesheet" href="../myassets/css/kalender.css">
+    <title>Kalkulator Zakat</title>
 </head>
 <body>
     <div id="wrapper">
         <div id="content">
-            <!-- Header -->
+            <!-- Start main_haeder -->
             <header class="main_haeder multi_item">
                 <div class="em_side_right">
                     <a class="btn btn__back rounded-circle bg-snow" href="../index.html">
@@ -40,7 +38,7 @@
                     </a>
                 </div>
                 <div class="title_page">
-                    <span class="page_name">Kalender Masehi & Hijriyah</span>
+                    <span class="page_name">Kalkulator Zakat</span>
                 </div>
                 <div class="em_side_right">
                     <button type="button" class="btn btn_menuSidebar item-show" data-toggle="modal" data-target="#mdllSidebarMenu-background">
@@ -48,113 +46,52 @@
                     </button>
                 </div>
             </header>
+            <!-- End.main_haeder -->
 
             <!-- Main Content -->
-            <main class="container mt-4">
-                <div class="card animate__animated animate__zoomIn">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center flex-wrap">
-                            <button id="eventListBtn" class="btn event-list-btn" title="Lihat Daftar Acara">
-                                <i class="fas fa-list"></i>
-                            </button>
-                            <button id="refreshBtn" class="btn refresh-btn" title="Refresh">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <div class="d-flex justify-content-center align-items-center flex-grow-1 header-content">
-                                <button id="prevMonth" class="btn btn-light"><i class="fas fa-arrow-left"></i></button>
-                                <h5 id="monthYear" class="mb-0 mx-2 text-center"></h5>
-                                <button id="nextMonth" class="btn btn-light"><i class="fas fa-arrow-right"></i></button>
-                                <div class="select-container-wrapper">
-                                    <div class="select-container mx-2">
-                                        <select id="monthSelect" class="form-control"></select>
+            <main id="app" class="container mt-4 animate__animated animate__fadeIn">
+                <div class="row">
+                    <div class="col-lg-12" style="margin-bottom: 3rem;">
+                        <div class="card my-5 border-0 shadow animate__animated animate__zoomIn">
+                            <div class="card-header my-card-header d-flex justify-content-between align-items-center">
+                                <span class="animate__animated animate__fadeInLeft">Kalkulator Zakat</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="kalkulator-zakat">
+                                    <h2>Kalkulator Zakat</h2>
+                                    <div class="hitung-nishab">
+                                        <h3>Hitung Nishab</h3>
+                                        <p>Nishab dihitung sebagai acuannya apakah seorang Muslim wajib mengeluarkan zakat atau tidak. Berdasarkan dalil Al-Qur’an Surah Al Baqarah ayat 267, Peraturan Menteri Agama Nomor 31 Tahun 2019, Fatwa MUI Nomor 3 Tahun 2003, dan pendapat Syaikh Yusuf Qardawi, untuk zakat penghasilan dan emas, nishabnya adalah sebesar 85 gram emas dalam satu tahun. Untuk zakat penghasilan yang ditunaikan tiap bulan, maka nishabnya adalah 1/12 dari 85 gram emas.</p>
+                                        <div class="input-group">
+                                            <label for="goldPrice">Harga Emas Saat Ini (IDR per gram)</label>
+                                            <input type="text" id="goldPrice" v-model="formattedGoldPrice" placeholder="Masukkan harga emas" @input="formatGoldPriceInput">
+                                            <a href="https://www.logammulia.com/id/harga-emas-hari-ini"><span class="gold-price-link">Tidak tahu harga emas? Klik disini untuk mencari tahu.</span></a>
+                                        </div>
                                     </div>
-                                    <div class="select-container">
-                                        <select id="yearSelect" class="form-control"></select>
+                                    <div class="zakat-penghasilan">
+                                        <h3>Zakat Penghasilan</h3>
+                                        <div class="input-group">
+                                            <label for="monthlyIncome">Penghasilan per Bulan (IDR)</label>
+                                            <input type="text" id="monthlyIncome" v-model="formattedMonthlyIncome" placeholder="Masukkan penghasilan" @input="formatMonthlyIncomeInput">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="otherIncome">Pendapatan Lain (jika ada) (IDR)</label>
+                                            <input type="text" id="otherIncome" v-model="formattedOtherIncome" placeholder="Masukkan pendapatan lain" @input="formatOtherIncomeInput">
+                                        </div>
+                                        <button class="btn btn-primary mt-3" @click="calculateZakat">Hitung Zakat</button>
+                                    </div>
+                                    <div class="result" :class="{ 'show': showResults }">
+                                        <p>Nishab per tahun: Rp. {{ formatNumber(annualNishab) }}</p>
+                                        <p>Nishab per bulan: Rp. {{ formatNumber(monthlyNishab) }}</p>
+                                        <p>Zakat yang perlu dikeluarkan (per bulan): Rp. {{ formatNumber(zakatAmount) }}</p>
+                                    </div>
+                                    <div class="obligation" :class="{ 'show': showResults }">
+                                        <p>Apakah kamu wajib zakat? <span :class="{ obligated: isObligated }">{{ isObligated ? 'YA' : 'TIDAK' }}</span></p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="calendar-table">
-                            <thead>
-                                <tr>
-                                    <th>Minggu</th><th>Senin</th><th>Selasa</th><th>Rabu</th>
-                                    <th>Kamis</th><th>Jumat</th><th>Sabtu</th>
-                                </tr>
-                            </thead>
-                            <tbody id="calendarBody"></tbody>
-                        </table>
-                        <div class="mt-3">
-                            <p id="hijriDate" style="font-size: 0.9rem;"></p>
-                            <p id="countdown" style="font-size: 0.9rem;"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal untuk Menandai Tanggal -->
-                <div class="modal fade" id="markDateModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Tandai Tanggal</h5>
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Tanggal: <span id="selectedDate" style="font-size: 0.9rem;"></span></p>
-                                <input type="text" id="eventName" class="form-control mb-2" placeholder="Nama Acara" style="font-size: 0.9rem;">
-                                <input type="time" id="eventTime" class="form-control" placeholder="Waktu (HH:MM)" style="font-size: 0.9rem;">
-                            </div>
-                            <div class="modal-footer">
-                                <button id="saveEvent" class="btn btn-success" style="font-size: 0.9rem;">Simpan</button>
-                                <button id="deleteEvent" class="btn btn-danger" style="font-size: 0.9rem;">Hapus</button>
-                                <button class="btn btn-secondary" data-dismiss="modal" style="font-size: 0.9rem;">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal untuk Daftar Acara -->
-                <div class="modal fade" id="eventListModal" tabindex="-1">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Daftar Acara</h5>
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-striped acara">
-                                    <thead>
-                                        <tr>
-                                            <th>Tanggal</th>
-                                            <th>Nama Acara</th>
-                                            <th>Waktu</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="eventListBody"></tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" data-dismiss="modal" style="font-size: 0.9rem;">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal Countdown -->
-                <div class="modal fade" id="countdownModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Pengingat</h5>
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p id="countdownMessage" style="font-size: 0.9rem;"></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" data-dismiss="modal" style="font-size: 0.9rem;">Tutup</button>
+                            <div class="card-footer">
+                                © 2025 - Kita Berbagi Community
                             </div>
                         </div>
                     </div>
@@ -162,64 +99,28 @@
             </main>
         </div>
 
-        <!-- Start em_main_footer -->
+        <!-- Footer -->
         <footer class="em_main_footer with__text just_color p-0">
             <div class="em_body_navigation -active-links -active_primary position-relative">
                 <div class="item_link">
                     <a href="../kalender/" class="btn btn_navLink">
                         <div class="icon_current">
-                            <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <svg id="Iconly_Two-tone_Calendar" data-name="Iconly/Two-tone/Calendar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g id="Calendar" transform="translate(3 2)">
-                                    <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)"
-                                        fill="none" stroke="#200e32" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"
-                                        opacity="0.4" />
-                                    <path id="Combined_Shape" data-name="Combined Shape"
-                                        d="M9.343,4.36h.009Zm-4.438,0h.01Zm-4.446,0H.468ZM9.343.473h.009Zm-4.438,0h.01ZM.459.473H.468Z"
-                                        transform="translate(4.099 10.837)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" opacity="0.4" />
-                                    <path id="Line_207" d="M.463,0V3.291" transform="translate(12.581 0)"
-                                        fill="none" stroke="#200e32" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                    <path id="Line_208" d="M.463,0V3.291" transform="translate(4.502 0)"
-                                        fill="none" stroke="#200e32" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
-                                    <path id="Path"
-                                        d="M13.238,0H4.771C1.834,0,0,1.636,0,4.643v9.05c0,3.054,1.834,4.728,4.771,4.728h8.458c2.946,0,4.771-1.645,4.771-4.652V4.643C18.009,1.636,16.184,0,13.238,0Z"
-                                        transform="translate(0 1.579)" fill="none" stroke="#200e32"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" />
+                                    <path id="Line_200" d="M0,.473H17.824" transform="translate(0.093 6.931)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
+                                    <path id="Combined_Shape" data-name="Combined Shape" d="M9.343,4.36h.009Zm-4.438,0h.01Zm-4.446,0H.468ZM9.343.473h.009Zm-4.438,0h.01ZM.459.473H.468Z" transform="translate(4.099 10.837)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" opacity="0.4" />
+                                    <path id="Line_207" d="M.463,0V3.291" transform="translate(12.581 0)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                    <path id="Line_208" d="M.463,0V3.291" transform="translate(4.502 0)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                    <path id="Path" d="M13.238,0H4.771C1.834,0,0,1.636,0,4.643v9.05c0,3.054,1.834,4.728,4.771,4.728h8.458c2.946,0,4.771-1.645,4.771-4.652V4.643C18.009,1.636,16.184,0,13.238,0Z" transform="translate(0 1.579)" fill="none" stroke="#200e32" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
                                 </g>
                             </svg>
-                        </div>
-                        <div class="icon_active">
-                            <svg id="Iconly_Bulk_Calendar" data-name="Iconly/Bulk/Calendar"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g id="Calendar" transform="translate(3 2)">
-                                    <path id="Fill_1" data-name="Fill 1"
-                                        d="M5.127,12.743A4.776,4.776,0,0,1,0,7.613V0H18V7.674c0,3.138-1.976,5.069-5.137,5.069Z"
-                                        transform="translate(0 7.257)" fill="#200e32" />
-                                    <path id="Fill_4" data-name="Fill 4"
-                                        d="M0,5.767A15.855,15.855,0,0,1,.155,3.64,4.591,4.591,0,0,1,4.541,0h8.911a4.639,4.639,0,0,1,4.386,3.64,15.892,15.892,0,0,1,.154,2.127Z"
-                                        transform="translate(0.003 1.49)" fill="#200e32" opacity="0.4" />
-                                    <path id="Fill_6" data-name="Fill 6"
-                                        d="M.761,4.59a.747.747,0,0,0,.761-.77V.771A.748.748,0,0,0,.761,0,.748.748,0,0,0,0,.771V3.82a.747.747,0,0,0,.761.77"
-                                        transform="translate(4.544 0)" fill="#200e32" />
-                                    <path id="Fill_9" data-name="Fill 9"
-                                        d="M.761,4.59a.753.753,0,0,0,.761-.77V.771A.754.754,0,0,0,.761,0,.748.748,0,0,0,0,.771V3.82a.747.747,0,0,0,.761.77"
-                                        transform="translate(11.934 0)" fill="#200e32" />
-                                </g>
-                            </svg>
-        
                         </div>
                         <div class="txt__tile">Calender</div>
                     </a>
                 </div>
                 <div class="item_link">
                     <a href="../jadwalsholatdanimsakiah/" class="btn btn_navLink">
-                        <div class="icon_current">
+                        <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
                                 <path d="M9.5 9.5L12.9999 12.9996M16 8L11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -229,7 +130,7 @@
                     </a>
                 </div>
                 <div class="item_link">
-                    <a href="../" class="btn btn_navLink">
+                    <a href="../index.html" class="btn btn_navLink">
                         <button type="button" class="btn btnCircle_default _lg">
                             <svg id="Iconly_Curved_Home" data-name="Iconly/Curved/Home" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                 <g id="Home" transform="translate(2 1.667)">
@@ -243,26 +144,12 @@
                 <div class="item_link">
                     <a href="https://kitaberbagi.com/forum/" class="btn btn_navLink">
                         <div class="icon_current">
-                            <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <svg id="Iconly_Curved_Document" data-name="Iconly/Curved/Document" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g id="Document" transform="translate(3.61 2.75)">
-                                    <path id="Stroke_1" data-name="Stroke 1" d="M7.22.5H0"
-                                        transform="translate(4.766 12.446)" fill="none" stroke="#9498ac"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" />
-                                    <path id="Stroke_2" data-name="Stroke 2" d="M7.22.5H0"
-                                        transform="translate(4.766 8.686)" fill="none" stroke="#9498ac"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" />
-                                    <path id="Stroke_3" data-name="Stroke 3" d="M2.755.5H0"
-                                        transform="translate(4.766 4.927)" fill="none" stroke="#9498ac"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" />
-                                    <path id="Stroke_4" data-name="Stroke 4"
-                                        d="M0,9.25c0,6.937,2.1,9.25,8.391,9.25s8.391-2.313,8.391-9.25S14.685,0,8.391,0,0,2.313,0,9.25Z"
-                                        transform="translate(0)" fill="none" stroke="#9498ac"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                                        stroke-width="1.5" />
+                                    <path id="Stroke_1" data-name="Stroke 1" d="M7.22.5H0" transform="translate(4.766 12.446)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                    <path id="Stroke_2" data-name="Stroke 2" d="M7.22.5H0" transform="translate(4.766 8.686)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                    <path id="Stroke_3" data-name="Stroke 3" d="M2.755.5H0" transform="translate(4.766 4.927)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
+                                    <path id="Stroke_4" data-name="Stroke 4" d="M0,9.25c0,6.937,2.1,9.25,8.391,9.25s8.391-2.313,8.391-9.25S14.685,0,8.391,0,0,2.313,0,9.25Z" transform="translate(0)" fill="none" stroke="#9498ac" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" />
                                 </g>
                             </svg>
                         </div>
@@ -282,10 +169,9 @@
                 </div>
             </div>
         </footer>
-        <!-- End. em_main_footer -->
 
         <!-- Modal Sidebar Menu dari Hadist Digital -->
-<div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header d-block">
@@ -312,7 +198,7 @@
                         <ul class="nav flex-column -active-links">
                             <li class="nav-item">
                                 <a class="nav-link" href="../index.html">
-                                <div class="">
+                                    <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Home" data-name="Iconly/Curved/Home" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                 <g id="Home" transform="translate(2 1.667)">
@@ -360,7 +246,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                <div class="">
+                                    <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Discovery" data-name="Iconly/Curved/Discovery" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                                                 <g id="Discovery" transform="translate(2.292 2.292)">
@@ -441,16 +327,15 @@
             </div>
         </div>
     </div>
-    <!-- End. Modal Sidebar Menu dari Hadist Digital -->
+    <!-- End. Modal Sidebar Menu dari quran Digital -->
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../assets/js/main.js" defer></script>
-    <script src="../assets/js/pwa-services.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- Script untuk Kalender -->
-     <script src="../myassets/js/kalender.js"></script>
+    <script src="../myassets/js/kalkulatorzakat.js"></script>
 </body>
 </html>
