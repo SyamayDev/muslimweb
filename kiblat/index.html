@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="Description" content="Arah Kiblat untuk Sholat dengan Kompas Digital">
+    <meta name="Description" content="Arah Kiblat Sholat">
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lateef&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
@@ -24,7 +23,7 @@
     <link rel="stylesheet" href="../assets/css/normalize.css">
 
     <style>
-        /* CSS Variables dari Kode Asli */
+        /* CSS Variables dari Doa Digital */
         :root {
             --color-black: #000;
             --color-white: #fff;
@@ -32,15 +31,33 @@
             --color-secondary: #0e132d;
             --color-snow: #cbcdd8;
             --color-red: #ff4040;
+            --color-orange: #ff702c;
+            --color-blue: #4a8cfd;
+            --color-yellow: #fa9905;
             --color-green: #41bd83;
             --color-text: #9498ac;
+            --color-comment: #5d6072;
             --bg-black: #000;
             --bg-white: #fff;
             --bg-primary: #556fff;
+            --bg-secondary: #0e132d;
             --bg-snow: #f7f7f8;
+            --bg-red: #ff4040;
+            --bg-orange: #ff702c;
+            --bg-blue: #53a7f9;
+            --bg-yellow: #fa9905;
             --bg-green: #41bd83;
+            --border-black: #000;
+            --border-white: #fff;
+            --border-primary: #556fff;
+            --border-secondary: #0e132d;
             --border-snow: #efeff6;
+            --border-red: #ff4040;
+            --border-orange: #ff702c;
+            --border-blue: #4a8cfd;
+            --border-yellow: #fa9905;
             --border-green: #41bd83;
+            --border-input: #efeff6;
         }
 
         body.darkMode-active {
@@ -49,9 +66,34 @@
             --color-primary: #556fff;
             --color-secondary: #cbcdd8;
             --color-snow: #52566e;
+            --color-red: #ff4040;
+            --color-orange: #ff702c;
+            --color-blue: #4a8cfd;
+            --color-yellow: #fa9905;
+            --color-green: #41bd83;
+            --color-text: #9498ac;
+            --color-comment: #5d6072;
+            --bg-black: #fff;
             --bg-white: #0e132d;
+            --bg-primary: #556fff;
+            --bg-secondary: #9498ac;
             --bg-snow: #0a0f27;
+            --bg-red: #ff4040;
+            --bg-orange: #ff702c;
+            --bg-blue: #53a7f9;
+            --bg-yellow: #fa9905;
+            --bg-green: #41bd83;
+            --border-black: #000;
+            --border-white: #0e132d;
+            --border-primary: #556fff;
+            --border-secondary: #0e132d;
             --border-snow: #242a48;
+            --border-red: #ff4040;
+            --border-orange: #ff702c;
+            --border-blue: #4a8cfd;
+            --border-yellow: #fa9905;
+            --border-green: #41bd83;
+            --border-input: #303756;
         }
 
         /* Base Styles */
@@ -72,31 +114,42 @@
             100% { background: linear-gradient(45deg, var(--bg-snow), var(--bg-white)); }
         }
 
-        /* Kompas Styling */
-        .qibla-section {
-            text-align: center;
-            padding: 20px;
+        /* Card */
+        .card {
+            border-radius: 15px;
+            background: var(--bg-white);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
-        .qibla-section svg {
-            margin: 20px auto;
-            display: block;
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         }
-        .qibla-map {
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .btn-location {
-            background: var(--bg-green);
+        .card-header {
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(45deg, var(--bg-green), var(--bg-blue));
             color: var(--color-white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: transform 0.3s ease;
         }
-        .btn-location:hover {
-            transform: scale(1.05);
-            background: var(--color-green);
+
+        /* Compass Styles */
+        #compass {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        #compass img {
+            width: 100%;
+            height: 100%;
+        }
+        #needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 150px;
+            background: red;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            transition: transform 0.5s ease;
         }
     </style>
 
@@ -105,7 +158,7 @@
 <body>
     <div id="wrapper">
         <div id="content">
-            <!-- Header -->
+            <!-- Navbar dari Doa Digital -->
             <header class="main_haeder multi_item">
                 <div class="em_side_right">
                     <a class="btn btn__back rounded-circle bg-snow" href="../index.html">
@@ -127,43 +180,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card my-5 border-0 shadow animate__animated animate__zoomIn">
-                            <div class="card-body qibla-section">
-                                <button class="btn btn-location" @click="getUserLocation">
-                                    <i class="fas fa-location-arrow"></i> Dapatkan Lokasi
-                                </button>
-                                <div v-if="loadingLocation" class="mt-3">
-                                    Memuat lokasi...
+                            <div class="card-header my-card-header d-flex justify-content-between align-items-center">
+                                <span class="animate__animated animate__fadeInLeft">Arah Kiblat</span>
+                            </div>
+                            <div class="card-body">
+                                <div id="compass">
+                                    <img src="compass-background.png" alt="Compass Background">
+                                    <div id="needle"></div>
                                 </div>
-                                <div v-else-if="locationError" class="mt-3 text-danger">
-                                    {{ locationError }}
-                                </div>
-                                <div v-else-if="userLat && userLon" class="mt-3">
-                                    <h3>Kiblat: {{ qiblaAngle.toFixed(0) }}°</h3>
-                                    <svg width="300" height="300">
-                                        <circle cx="150" cy="150" r="140" fill="var(--bg-green)" />
-                                        <g transform="translate(150,150)">
-                                            <text x="0" y="-130" text-anchor="middle" fill="var(--color-white)" font-size="20">N</text>
-                                            <text x="130" y="0" text-anchor="middle" fill="var(--color-white)" font-size="20">E</text>
-                                            <text x="0" y="130" text-anchor="middle" fill="var(--color-white)" font-size="20">S</text>
-                                            <text x="-130" y="0" text-anchor="middle" fill="var(--color-white)" font-size="20">W</text>
-                                            <!-- Markah setiap 30 derajat -->
-                                            <g v-for="i in 12" :key="i">
-                                                <line :transform="`rotate(${i * 30}, 0, 0)`" x1="0" y1="-140" x2="0" y2="-130" stroke="var(--color-white)" stroke-width="2" />
-                                                <text :x="135 * Math.sin(i * 30 * Math.PI / 180)" :y="-135 * Math.cos(i * 30 * Math.PI / 180)" text-anchor="middle" fill="var(--color-white)" font-size="12">
-                                                    {{ (i * 30) % 360 }}
-                                                </text>
-                                            </g>
-                                        </g>
-                                        <g :transform="`rotate(${qiblaAngle}, 150, 150)`">
-                                            <path d="M150,150 L150,50" stroke="var(--color-green)" stroke-width="10" stroke-linecap="round" />
-                                            <path d="M150,50 L150,30" stroke="var(--color-red)" stroke-width="10" stroke-linecap="round" />
-                                        </g>
-                                    </svg>
-                                    <img :src="mapUrl" alt="Map to Kaaba" class="qibla-map" />
-                                </div>
-                                <div v-else class="mt-3">
-                                    Klik "Dapatkan Lokasi" untuk menampilkan arah Kiblat.
-                                </div>
+                                <p id="direction-text" class="text-center mt-3"></p>
                             </div>
                         </div>
                     </div>
@@ -171,7 +196,7 @@
             </main>
         </div>
 
-        <!-- Footer (sama seperti Doa Digital) -->
+        <!-- Footer dari Doa Digital -->
         <footer class="em_main_footer with__text just_color p-0">
             <div class="em_body_navigation -active-links -active_primary position-relative">
                 <div class="item_link">
@@ -242,7 +267,7 @@
             </div>
         </footer>
 
-        <!-- Sidebar (sama seperti Doa Digital, dengan href Kiblat diperbarui) -->
+        <!-- Sidebar dari Doa Digital -->
         <div class="modal sidebarMenu -left fade" id="mdllSidebarMenu-background" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -317,7 +342,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="qibla.html">
+                                <a class="nav-link" href="#">
                                     <div class="">
                                         <div class="icon_current">
                                             <svg id="Iconly_Curved_Discovery" data-name="Iconly/Curved/Discovery" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -344,6 +369,9 @@
                                             </svg>
                                         </div>
                                         <span class="title_link">Settings</span>
+                                    </div>
+                                    <div class="em_pulp">
+                                        <span class="doted_item"></span>
                                     </div>
                                 </a>
                             </li>
@@ -401,82 +429,72 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                loadingLocation: false,
-                locationError: '',
-                userLat: null,
-                userLon: null,
-                qiblaAngle: 0,
-                mapUrl: ''
-            },
-            methods: {
-                getUserLocation() {
-                    this.loadingLocation = true;
-                    this.locationError = '';
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(
-                            (position) => {
-                                this.userLat = position.coords.latitude;
-                                this.userLon = position.coords.longitude;
-                                this.calculateQibla();
-                                this.loadingLocation = false;
-                            },
-                            (error) => {
-                                this.locationError = 'Gagal mendapatkan lokasi: ' + error.message;
-                                this.loadingLocation = false;
-                            }
-                        );
-                    } else {
-                        this.locationError = 'Geolocation tidak didukung oleh browser ini.';
-                        this.loadingLocation = false;
-                    }
-                },
-                calculateQibla() {
-                    const kaabaLat = 21.4225; // Latitude Kaaba
-                    const kaabaLon = 39.8262; // Longitude Kaaba
-                    const lat1 = this.userLat * Math.PI / 180; // Convert to radians
-                    const lon1 = this.userLon * Math.PI / 180;
-                    const lat2 = kaabaLat * Math.PI / 180;
-                    const lon2 = kaabaLon * Math.PI / 180;
+        // Fungsi untuk menghitung bearing (arah) dari dua titik
+        function calculateBearing(lat1, lon1, lat2, lon2) {
+            const φ1 = lat1 * Math.PI / 180; // Konversi ke radian
+            const φ2 = lat2 * Math.PI / 180;
+            const Δλ = (lon2 - lon1) * Math.PI / 180;
 
-                    const dLon = lon2 - lon1;
-                    const y = Math.sin(dLon) * Math.cos(lat2);
-                    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
-                    let bearing = Math.atan2(y, x) * 180 / Math.PI;
-                    this.qiblaAngle = (bearing + 360) % 360; // Ensure 0-360°
+            const y = Math.sin(Δλ) * Math.cos(φ2);
+            const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+            const θ = Math.atan2(y, x);
 
-                    // Generate Static Map URL (replace YOUR_API_KEY with actual key)
-                    this.mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${this.userLat},${this.userLon}&zoom=2&size=300x150&path=color:0x00ff00|weight:5|${this.userLat},${this.userLon}|${kaabaLat},${kaabaLon}&key=YOUR_API_KEY`;
-                }
-            }
-        });
+            return (θ * 180 / Math.PI + 360) % 360; // Kembali ke derajat, pastikan 0-360
+        }
 
-        // Dark Mode Persistence
+        // Fungsi untuk mengubah derajat ke arah kompas
+        function getCompassDirection(degree) {
+            const directions = ['Utara', 'Timur Laut', 'Timur', 'Tenggara', 'Selatan', 'Barat Daya', 'Barat', 'Barat Laut'];
+            const index = Math.round(degree / 45) % 8;
+            return directions[index];
+        }
+
+        // Inisialisasi saat DOM selesai dimuat
         document.addEventListener('DOMContentLoaded', () => {
+            const kaabaLat = 21.4225; // Latitude Ka'bah
+            const kaabaLon = 39.8262; // Longitude Ka'bah
+            const needle = document.getElementById('needle');
+            const directionText = document.getElementById('direction-text');
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+
+                    // Hitung bearing ke Ka'bah
+                    const bearing = calculateBearing(userLat, userLon, kaabaLat, kaabaLon);
+
+                    // Putar jarum kompas
+                    needle.style.transform = `translate(-50%, -100%) rotate(${bearing}deg)`;
+
+                    // Tampilkan teks arah
+                    directionText.textContent = `Arah Kiblat: ${bearing.toFixed(2)}° dari Utara (${getCompassDirection(bearing)})`;
+                }, error => {
+                    console.error('Error getting location:', error);
+                    directionText.textContent = 'Gagal mendapatkan lokasi. Pastikan izin lokasi diaktifkan.';
+                });
+            } else {
+                directionText.textContent = 'Browser Anda tidak mendukung geolokasi.';
+            }
+
+            // Dark Mode Persistence
             const darkModeSwitch = document.getElementById('switchDarkMode');
             const body = document.body;
-
             if (localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('darkMode-active');
-                if (darkModeSwitch) darkModeSwitch.checked = true;
+                darkModeSwitch.checked = true;
             }
-
-            if (darkModeSwitch) {
-                darkModeSwitch.addEventListener('change', () => {
-                    if (darkModeSwitch.checked) {
-                        body.classList.add('darkMode-active');
-                        localStorage.setItem('darkMode', 'enabled');
-                    } else {
-                        body.classList.remove('darkMode-active');
-                        localStorage.setItem('darkMode', 'disabled');
-                    }
-                });
-            }
+            darkModeSwitch.addEventListener('change', () => {
+                if (darkModeSwitch.checked) {
+                    body.classList.add('darkMode-active');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    body.classList.remove('darkMode-active');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
         });
     </script>
 </body>
