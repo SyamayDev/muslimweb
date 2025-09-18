@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surah Al-Ikhlas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .ayat {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .arabic {
+            font-size: 1.5em;
+            text-align: right;
+            color: #2c3e50;
+        }
+        .latin {
+            font-style: italic;
+            color: #555;
+        }
+        .translation {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Surah Al-Fatihah</h1>
+    <div id="surah"></div>
+
+    <script>
+        fetch('https://equran.id/api/surat/1')
+            .then(response => response.json())
+            .then(data => {
+                const surahDiv = document.getElementById('surah');
+                data.ayat.forEach(ayat => {
+                    const ayatDiv = document.createElement('div');
+                    ayatDiv.className = 'ayat';
+                    ayatDiv.innerHTML = `
+                        <div class="arabic">${ayat.ar}</div>
+                        <div class="latin">${ayat.tr}</div>
+                        <div class="translation">${ayat.idn}</div>
+                    `;
+                    surahDiv.appendChild(ayatDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
